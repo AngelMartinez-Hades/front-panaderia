@@ -1,0 +1,82 @@
+<div class="container mt-4">
+  <h2 class="mb-4">Gestión de Categorías</h2>
+
+  <!-- Formulario -->
+  <div class="card shadow-sm mb-4">
+    <div class="card-header bg-primary text-white">
+      <h5 class="mb-0">{{ isEditing ? 'Editar Categoría' : 'Nueva Categoría' }}</h5>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="guardarCategoria()" class="needs-validation" novalidate>
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input type="text" class="form-control" id="nombre" 
+                 [(ngModel)]="categoria.nombre" name="nombre" required>
+          <div class="invalid-feedback">Por favor ingrese un nombre</div>
+        </div>
+        <div class="mb-3">
+          <label for="descripcion" class="form-label">Descripción</label>
+          <textarea class="form-control" id="descripcion" 
+                    [(ngModel)]="categoria.descripcion" name="descripcion" rows="3"></textarea>
+        </div>
+        <div class="d-flex justify-content-end">
+          <button type="button" class="btn btn-outline-secondary me-2" 
+                  (click)="limpiarFormulario()" *ngIf="isEditing">
+            Cancelar
+          </button>
+          <button type="submit" class="btn btn-primary">
+            <i class="fas fa-save me-1"></i>
+            {{ isEditing ? 'Actualizar' : 'Guardar' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Listado -->
+  <div class="card shadow-sm">
+    <div class="card-header bg-light">
+      <h5 class="mb-0">Listado de Categorías</h5>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover table-bordered">
+          <thead class="table-light">
+            <tr>
+              <th width="10%">ID</th>
+              <th width="25%">Nombre</th>
+              <th width="45%">Descripción</th>
+              <th width="20%">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cat of categorias">
+              <td>{{ cat.id }}</td>
+              <td>{{ cat.nombre }}</td>
+              <td>{{ cat.descripcion }}</td>
+              <td>
+                <div class="btn-group btn-group-sm" role="group">
+                  <button type="button" class="btn btn-outline-primary" 
+                          (click)="editarCategoria(cat)" title="Editar">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button type="button" class="btn btn-outline-danger" 
+                          (click)="eliminarCategoria(cat.id)" title="Eliminar">
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                  <button type="button" class="btn btn-outline-info" 
+                          (click)="verDetalle(cat)" title="Ver detalle">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr *ngIf="categorias.length === 0">
+              <td colspan="4" class="text-center text-muted">No hay categorías registradas</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
