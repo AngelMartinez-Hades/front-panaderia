@@ -1,0 +1,108 @@
+<div class="modal-container">
+  <!-- Header del Modal -->
+  <div class="modal-header">
+    <div class="d-flex align-items-center">
+      <mat-icon [ngClass]="getColorIcon()" class="me-2">{{ getIcon() }}</mat-icon>
+      <h2 class="modal-title mb-0">{{ getTitulo() }}</h2>
+    </div>
+    <button mat-icon-button 
+            (click)="onCancelar()" 
+            class="close-button"
+            matTooltip="Cerrar">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <!-- Contenido del Modal -->
+  <mat-dialog-content class="modal-content">
+    <form [formGroup]="categoriaForm" (ngSubmit)="onGuardar()">
+      <div class="row">
+        <!-- Campo Nombre -->
+        <div class="col-12 mb-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Nombre de la Categoría</mat-label>
+            <input matInput 
+                   formControlName="nombre"
+                   placeholder="Ingrese el nombre de la categoría"
+                   [readonly]="isReadonly()"
+                   maxlength="100">
+            <mat-icon matSuffix>category</mat-icon>
+            <mat-error *ngIf="nombre?.invalid && nombre?.touched">
+              {{ getNombreError() }}
+            </mat-error>
+            <mat-hint *ngIf="!isReadonly()">
+              {{ nombre?.value?.length || 0 }}/100 caracteres
+            </mat-hint>
+          </mat-form-field>
+        </div>
+
+        <!-- Campo Descripción -->
+        <div class="col-12 mb-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Descripción</mat-label>
+            <textarea matInput 
+                      formControlName="descripcion"
+                      placeholder="Ingrese una descripción (opcional)"
+                      [readonly]="isReadonly()"
+                      rows="4"
+                      maxlength="500">
+            </textarea>
+            <mat-icon matSuffix>description</mat-icon>
+            <mat-error *ngIf="descripcion?.invalid && descripcion?.touched">
+              {{ getDescripcionError() }}
+            </mat-error>
+            <mat-hint *ngIf="!isReadonly()">
+              {{ descripcion?.value?.length || 0 }}/500 caracteres
+            </mat-hint>
+          </mat-form-field>
+        </div>
+
+        <!-- Información adicional en modo ver -->
+        <div *ngIf="isReadonly() && data.categoria" class="col-12">
+          <mat-card class="info-card">
+            <mat-card-content>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="info-item">
+                    <label class="info-label">ID:</label>
+                    <span class="info-value">{{ data.categoria.id }}</span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="info-item">
+                    <label class="info-label">Estado:</label>
+                    <span class="badge bg-success">Activa</span>
+                  </div>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </form>
+  </mat-dialog-content>
+
+  <!-- Footer del Modal -->
+  <mat-dialog-actions class="modal-footer">
+    <div class="d-flex justify-content-end w-100 gap-2">
+      <button mat-button 
+              (click)="onCancelar()"
+              class="btn-cancel">
+        <mat-icon class="me-1">cancel</mat-icon>
+        {{ isReadonly() ? 'Cerrar' : 'Cancelar' }}
+      </button>
+      
+      <button *ngIf="!isReadonly()" 
+              mat-raised-button 
+              color="primary"
+              (click)="onGuardar()"
+              [disabled]="categoriaForm.invalid"
+              class="btn-save">
+        <mat-icon class="me-1">
+          {{ data.modo === 'crear' ? 'add' : 'save' }}
+        </mat-icon>
+        {{ data.modo === 'crear' ? 'Crear' : 'Guardar' }}
+      </button>
+    </div>
+  </mat-dialog-actions>
+</div>

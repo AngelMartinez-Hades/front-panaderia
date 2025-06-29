@@ -1,21 +1,381 @@
-/* Estilos personalizados */
-.card {
-  border-radius: 0.5rem;
+/* Estilos generales del componente */
+.container-fluid {
+  background-color: #f8f9fa;
+  min-height: 100vh;
 }
 
-.card-header {
-  border-radius: 0.5rem 0.5rem 0 0 !important;
-}
-
-.table th {
+/* Header */
+h2 {
+  color: #2c3e50;
   font-weight: 600;
 }
 
-.btn-group .btn {
-  border-radius: 0.25rem;
-  margin-right: 0.25rem;
+.text-primary {
+  color: #3f51b5 !important;
 }
 
-.btn-group .btn:last-child {
-  margin-right: 0;
+.btn-nuevo {
+  border-radius: 8px;
+  font-weight: 500;
+  text-transform: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.btn-nuevo:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+.btn-refresh {
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.btn-refresh:hover {
+  transform: rotate(180deg);
+}
+
+/* Tarjetas */
+.filter-card,
+.table-card {
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: none;
+  transition: box-shadow 0.3s ease;
+}
+
+.filter-card:hover,
+.table-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Campos de formulario */
+::ng-deep .mat-mdc-form-field-appearance-outline .mat-mdc-form-field-outline {
+  border-radius: 8px;
+}
+
+::ng-deep .mat-mdc-form-field-focus-overlay {
+  background-color: rgba(63, 81, 181, 0.04);
+}
+
+/* Tabla personalizada */
+.custom-table {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+::ng-deep .mat-mdc-table {
+  background-color: white;
+}
+
+::ng-deep .mat-mdc-header-row {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+::ng-deep .mat-mdc-header-cell {
+  color: white !important;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  border-bottom: none;
+  padding: 16px 24px;
+}
+
+::ng-deep .mat-mdc-cell {
+  padding: 16px 24px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #333;
+}
+
+.table-row {
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.table-row:hover {
+  background-color: #f8f9fa;
+  transform: scale(1.01);
+}
+
+.row-hover:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Descripción en la tabla */
+.description-cell {
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Botones de acción */
+.btn-group {
+  display: flex;
+  gap: 4px;
+}
+
+.btn-action {
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  width: 40px;
+  height: 40px;
+}
+
+.btn-action:hover {
+  transform: scale(1.1);
+}
+
+/* Badge personalizado */
+.badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.bg-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white;
+}
+
+.bg-light {
+  background-color: #e9ecef !important;
+  color: #495057 !important;
+  border: 1px solid #dee2e6;
+}
+
+/* Sin datos */
+.no-data {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.no-data-icon {
+  font-size: 4rem;
+  color: #ccc;
+  margin-bottom: 16px;
+}
+
+.no-data h5 {
+  color: #666;
+  font-weight: 500;
+}
+
+.no-data p {
+  color: #999;
+  margin-bottom: 20px;
+}
+
+/* Paginador */
+.paginator-container {
+  border-top: 1px solid #e0e0e0;
+  background-color: #fafafa;
+}
+
+.custom-paginator {
+  background-color: transparent;
+  border-radius: 0 0 8px 8px;
+}
+
+::ng-deep .mat-mdc-paginator {
+  background-color: transparent;
+}
+
+::ng-deep .mat-mdc-paginator .mat-mdc-paginator-range-label {
+  color: #666;
+  font-weight: 500;
+}
+
+::ng-deep .mat-mdc-paginator .mat-mdc-icon-button {
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+::ng-deep .mat-mdc-paginator .mat-mdc-icon-button:hover {
+  background-color: rgba(63, 81, 181, 0.1);
+}
+
+/* Loading spinner */
+::ng-deep .mat-mdc-progress-spinner circle {
+  stroke: #3f51b5;
+}
+
+/* Gap utility */
+.gap-2 {
+  gap: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container-fluid {
+    padding: 16px;
+  }
+  
+  .btn-nuevo {
+    width: 100%;
+    margin-top: 16px;
+  }
+  
+  .d-flex.justify-content-between {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .filter-card .row {
+    flex-direction: column;
+  }
+  
+  .filter-card .col-md-4 {
+    margin-top: 16px;
+    justify-content: center !important;
+  }
+  
+  .table-responsive {
+    font-size: 0.875rem;
+  }
+  
+  .btn-group {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .btn-action {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .description-cell {
+    max-width: 150px;
+  }
+  
+  ::ng-deep .mat-mdc-cell,
+  ::ng-deep .mat-mdc-header-cell {
+    padding: 12px 16px;
+  }
+}
+
+@media (max-width: 576px) {
+  .container-fluid {
+    padding: 12px;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  .filter-card,
+  .table-card {
+    margin-bottom: 16px;
+  }
+  
+  .no-data {
+    padding: 24px 16px;
+  }
+  
+  .no-data-icon {
+    font-size: 3rem;
+  }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.filter-card,
+.table-card {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Estilos para SweetAlert2 */
+::ng-deep .swal2-popup {
+  border-radius: 12px;
+  font-family: inherit;
+}
+
+::ng-deep .swal2-title {
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+::ng-deep .swal2-confirm {
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+::ng-deep .swal2-cancel {
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+/* Estilos para Toastr */
+::ng-deep .toast {
+  border-radius: 8px;
+}
+
+::ng-deep .toast-success {
+  background-color: #28a745;
+}
+
+::ng-deep .toast-error {
+  background-color: #dc3545;
+}
+
+::ng-deep .toast-info {
+  background-color: #17a2b8;
+}
+
+/* Sticky header */
+::ng-deep .mat-mdc-header-row.mat-mdc-header-row-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Mejoras de accesibilidad */
+.btn-action:focus {
+  outline: 2px solid #3f51b5;
+  outline-offset: 2px;
+}
+
+.table-row:focus-within {
+  outline: 2px solid #3f51b5;
+  outline-offset: 2px;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+
+/* Reemplaza estos estilos */
+.custom-table ::ng-deep .mat-mdc-header-row {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+}
+
+.custom-table ::ng-deep .mat-mdc-header-cell {
+  color: white !important;
+}
+
+.custom-table ::ng-deep .mat-mdc-header-cell .mat-sort-header-content {
+  color: white !important;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+.custom-table ::ng-deep .mat-sort-header-arrow {
+  color: white !important;
 }

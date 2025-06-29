@@ -1,0 +1,11 @@
+.container {
+  max-width: 960px;
+}
+
+.table th {
+  cursor: pointer;
+}
+
+.mat-form-field {
+  font-size: 16px;
+}

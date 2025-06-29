@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
 
- private username: string = 'amartinez'; // => esto lo quitas cuando implemente en login
+ private username: string = 'amartinez'; 
  private password: string = 'martinez'; // los dejas ''
 
 

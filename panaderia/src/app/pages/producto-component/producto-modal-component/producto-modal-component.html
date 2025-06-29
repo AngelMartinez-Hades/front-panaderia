@@ -1,0 +1,39 @@
+<h2 mat-dialog-title>
+  {{ data.accion === 'ver' ? 'Ver Producto' : data.accion === 'editar' ? 'Editar Producto' : 'Nuevo Producto' }}
+</h2>
+
+<div mat-dialog-content>
+  <form [formGroup]="form" class="p-2">
+    <mat-form-field appearance="outline" class="w-100 mb-3">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="nombre">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-100 mb-3">
+      <mat-label>Descripción</mat-label>
+      <input matInput formControlName="descripcion">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-100 mb-3">
+      <mat-label>Precio</mat-label>
+      <input matInput type="number" formControlName="precio">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-100 mb-3">
+      <mat-label>Stock</mat-label>
+      <input matInput type="number" formControlName="stock">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-100 mb-3">
+      <mat-label>Categoría</mat-label>
+      <mat-select formControlName="categoriaId">
+        <mat-option *ngFor="let cat of categorias" [value]="cat.id">{{ cat.nombre }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="cerrar()">Cerrar</button>
+  <button mat-raised-button color="primary" *ngIf="!esSoloLectura" (click)="guardar()">Guardar</button>
+</div>
