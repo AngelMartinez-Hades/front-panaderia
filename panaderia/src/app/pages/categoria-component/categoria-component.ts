@@ -42,10 +42,15 @@ export class CategoriaComponent implements OnInit {
     this.cargarCategorias();
   }
   cargarCategorias(): void {
-    this.categoriaService.listar().subscribe(
-      data => this.categorias = data,
-      error => console.error(error)
-    );
+    this.categoriaService.listar().subscribe({
+      next: (data) => {
+        console.log('✅ Categorías recibidas:', data);
+        this.categorias = data;
+      },
+      error: (err) => {
+        console.error('❌ Error al obtener categorías:', err);
+      }
+    });
   }
 
   guardarCategoria(): void {
